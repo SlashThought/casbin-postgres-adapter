@@ -21,10 +21,10 @@ import (
 	"strings"
 
 	"github.com/casbin/casbin/model"
-	_ "github.com/lib/pq" // This is for MySQL initialization.
+	_ "github.com/lib/pq" // This is for PostgreSQL initialization.
 )
 
-// Adapter represents the MySQL adapter for policy storage.
+// Adapter represents the PostgreSQL adapter for policy storage.
 type Adapter struct {
 	driverName     string
 	dataSourceName string
@@ -110,7 +110,7 @@ func (a *Adapter) LoadPolicy(model model.Model) error {
 		v5    string
 	)
 
-	rows, err := a.db.Query("select * from policy")
+	rows, err := a.db.Query("SELECT * from policy")
 	if err != nil {
 		return err
 	}
